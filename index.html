@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101713">
+  <meta name="description" content="Erik LyricChord Studio — editor lirik dan chord dengan auto-scroll untuk latihan dan live music.">
+  <title>Erik LyricChord Studio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Erik LyricChord Studio">
+      <span class="brand-mark">♪</span>
+      <span><strong>Erik LyricChord Studio</strong><small>LYRICS · CHORDS · LIVE MODE</small></span>
+    </a>
+    <button id="fullscreenBtn" class="icon-btn" title="Layar penuh" aria-label="Layar penuh">⛶</button>
+  </header>
+
+  <main class="app-shell">
+    <section class="intro">
+      <div>
+        <p class="eyebrow">PERSONAL MUSIC WORKSPACE</p>
+        <h1>Play your song.<br><em>Stay in the flow.</em></h1>
+        <p class="subtext">Tulis lirik, tempatkan chord di atas kata, lalu ikuti lagu dengan auto-scroll.</p>
+      </div>
+      <div class="intro-note">♪ <span>CHORD<br>ABOVE LYRICS</span></div>
+    </section>
+
+    <section class="workspace">
+      <aside class="sidebar">
+        <div class="panel">
+          <div class="panel-heading"><h2>Detail lagu</h2><span class="tiny-label">SONG INFO</span></div>
+          <label>Judul lagu<input id="songTitle" type="text" placeholder="Judul lagu"></label>
+          <label>Artis<input id="songArtist" type="text" placeholder="Nama artis"></label>
+          <div class="button-row">
+            <button id="newSongBtn" class="btn secondary">Lagu baru</button>
+            <button id="saveSongBtn" class="btn primary">Simpan lagu</button>
+          </div>
+        </div>
+
+        <div class="panel editor-panel">
+          <div class="panel-heading"><h2>Editor</h2><span class="tiny-label">LYRICS & CHORDS</span></div>
+          <p class="help">Gunakan tanda <code>[G]</code> sebelum kata tempat chord dimainkan. Chord akan tampil tepat di atas lirik.</p>
+          <textarea id="lyricsInput" spellcheck="false" aria-label="Editor lirik dan chord"></textarea>
+          <div class="button-row">
+            <button id="applyBtn" class="btn primary">Terapkan</button>
+            <button id="clearBtn" class="btn secondary">Kosongkan</button>
+          </div>
+          <div class="help format-example">
+            <strong>Contoh format</strong>
+            <code>[G]Aku [D]hadir dalam hidupmu</code>
+            <code>[Em]Membawa [C]sebuah cerita</code>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-heading"><h2>Koleksi lagu</h2><span class="tiny-label">LIBRARY</span></div>
+          <div id="songList" class="song-list"><p class="empty">Belum ada lagu tersimpan.</p></div>
+          <div class="button-row wrap">
+            <button id="exportBtn" class="btn secondary">Ekspor TXT</button>
+            <button id="importBtn" class="btn secondary">Impor TXT</button>
+            <input id="importFile" type="file" accept=".txt,text/plain" hidden>
+          </div>
+        </div>
+      </aside>
+
+      <section class="stage">
+        <div class="panel player-panel">
+          <div class="now-playing">
+            <div><span class="tiny-label">NOW PLAYING</span><h2 id="displayTitle">Contoh Lagu</h2><p id="displayArtist">Erik LyricChord Studio</p></div>
+            <span class="live-pill"><i></i> PRACTICE MODE</span>
+          </div>
+          <div class="transport">
+            <button id="playBtn" class="btn primary play-btn">▶ Mulai scroll</button>
+            <button id="pauseBtn" class="btn secondary">Ⅱ Jeda</button>
+            <button id="topBtn" class="btn secondary">↥ Ke awal</button>
+          </div>
+          <div class="controls-grid">
+            <div class="control">
+              <div class="control-label"><label for="speedRange">Kecepatan scroll</label><strong id="speedValue">2.0</strong></div>
+              <input id="speedRange" type="range" min="0.5" max="8" step="0.5" value="2">
+              <div class="range-ends"><span>Lambat</span><span>Cepat</span></div>
+            </div>
+            <div class="control">
+              <div class="control-label"><span>Ukuran lirik</span><strong id="fontValue">22 px</strong></div>
+              <div class="button-row"><button id="fontDown" class="btn secondary compact">A−</button><button id="fontUp" class="btn secondary compact">A+</button></div>
+            </div>
+            <div class="control">
+              <div class="control-label"><span>Transpose chord</span><strong id="transposeValue">0</strong></div>
+              <div class="button-row"><button id="transposeDown" class="btn secondary compact">− Semitone</button><button id="transposeUp" class="btn secondary compact">+ Semitone</button><button id="transposeReset" class="btn secondary compact">Reset</button></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lyrics-card">
+          <div class="lyrics-card-head"><span>LYRICS & CHORDS</span><span id="playStatus">SIAP</span></div>
+          <div id="lyricsDisplay" class="lyrics-display" aria-label="Tampilan lirik dan chord"></div>
+          <div class="lyrics-foot">Chord ditampilkan di atas lirik · Scroll area dapat digulir manual</div>
+        </div>
+      </section>
+    </section>
+    <footer>ERIK LYRICCHORD STUDIO <span>·</span> Made for practice and live performance</footer>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
